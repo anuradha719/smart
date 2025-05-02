@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
-import sys
-import pysqlite3
+
+
 
 from chains import Chain
 from portfolio import Portfolio
@@ -49,7 +49,6 @@ def create_streamlit_app(llm, portfolio, clean_text):
 
     if submit_button:
         try:
-            sys.modules["sqlite3"] = pysqlite3
             loader = WebBaseLoader([url_input])
             data = clean_text(loader.load().pop().page_content)
             portfolio.load_portfolio()
